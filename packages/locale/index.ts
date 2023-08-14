@@ -57,7 +57,7 @@ export { default as zhTw } from './lang/zh-tw'
 export type TranslatePair = {
   [key: string]: string | string[] | TranslatePair
 }
-
+// 导出对应语言包
 export type Language = {
   name: string
   el: TranslatePair

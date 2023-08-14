@@ -35,6 +35,9 @@
 }
 
 // set all css var for component by map
+/*
+遍历 footer变量 ， 将遍历的每一个样式规则分为key 和 value，把它当作对象看待即可， 然后通过 getCssVarName 生成对应的 css变量
+*/
 @mixin set-component-css-var($name, $variables) {
   @each $attribute, $value in $variables {
     @if $attribute == 'default' {

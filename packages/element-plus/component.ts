@@ -104,7 +104,7 @@ import { ElTreeV2 } from '@element-plus/components/tree-v2'
 import { ElUpload } from '@element-plus/components/upload'
 
 import type { Plugin } from 'vue'
-
+// 把对应通用组件全部导出
 export default [
   ElAffix,
   ElAlert,

@@ -1,10 +1,10 @@
+/* 混入 bem命名的 b方法 */
 @use 'mixins/mixins' as *;
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
 @include b(footer) {
   @include set-component-css-var('footer', $footer);
-
   padding: getCssVar('footer-padding');
   box-sizing: border-box;
   flex-shrink: 0;
