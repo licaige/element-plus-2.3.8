@@ -24,7 +24,9 @@ export const withInstall = <T, E extends Record<string, any>>(
   }
   return main as SFCWithInstall<T> & E
 }
-
+/*
+ *这个函数干的事情很简单，就是进行组件的注册
+ * */
 export const withInstallFunction = <T>(fn: T, name: string) => {
   ;(fn as SFCWithInstall<T>).install = (app: App) => {
     ;(fn as SFCInstallWithContext<T>)._context = app._context
@@ -33,7 +35,22 @@ export const withInstallFunction = <T>(fn: T, name: string) => {
 
   return fn as SFCInstallWithContext<T>
 }
+/*
+将其代码简化后再看就很好理解了
+将Message 的默认导出函数 包装install方法，用于Vue.use的组件注册
+我们在代码中的import {Elmessage} from 'element-plus 获取的 也是这一处的导出
+* */
 
+/*
+import Message from './src/method'
+export const withInstallFunction = (fn, name) => {
+  fn.install = (app) => {
+    fn._context = app._context
+    app.config.globalProperties[name] = fn
+  }
+  return fn
+}
+*/
 export const withInstallDirective = <T extends Directive>(
   directive: T,
   name: string

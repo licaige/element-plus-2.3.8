@@ -1,3 +1,7 @@
+/*
+ * 用于存储实例的instances 变量， 以及 用于获取实例 和 上一个实例的 两个函数，用于在创建了多个Message组件的情况下，
+ * 当前组件获取上一个实例的 组件高度和偏移值，让当前Message的CSS属性 Top值偏移到对应的位置
+ * */
 import { shallowReactive } from 'vue'
 import type { ComponentInternalInstance, VNode } from 'vue'
 import type { Mutable } from '@element-plus/utils'

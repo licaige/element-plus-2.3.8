@@ -8,7 +8,9 @@ export const defaultInitialZIndex = 2000
 
 export const zIndexContextKey: InjectionKey<Ref<number | undefined>> =
   Symbol('zIndexContextKey')
-
+/*
+ *取出全局下的zIndex  每次创建实例都会 自增一次 保证层级不重复
+ * */
 export const useZIndex = (zIndexOverrides?: Ref<number>) => {
   const zIndexInjection =
     zIndexOverrides ||
