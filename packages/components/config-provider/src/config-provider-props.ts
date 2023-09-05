@@ -1,4 +1,3 @@
-// 注入的props属性
 import { buildProps, definePropType } from '@element-plus/utils'
 import { useSizeProp } from '@element-plus/hooks'
 

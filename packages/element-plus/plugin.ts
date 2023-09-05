@@ -6,7 +6,7 @@ import { ElNotification } from '@element-plus/components/notification'
 import { ElPopoverDirective } from '@element-plus/components/popover'
 
 import type { Plugin } from 'vue'
-// 把对应弹窗组件全部导出
+
 export default [
   ElInfiniteScroll,
   ElLoading,

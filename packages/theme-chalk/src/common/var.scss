@@ -1405,9 +1405,6 @@ $main: map.merge(
   $main
 );
 // footer
-/*
-sass:map 是Sass的内置函数，merge用于合并两个样式规则。 变量footer 默认是空样式规则。()是多个样式规则的写法
-*/
 $footer: () !default;
 $footer: map.merge(
   (

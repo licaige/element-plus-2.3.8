@@ -8,9 +8,7 @@ import { computed, useSlots } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
 
 import type { Component, VNode } from 'vue'
-/*
- * defineOptions 是由 unplugin-vue-macros 提供的对于Vue实验性特性的支持
- * */
+
 defineOptions({
   name: 'ElContainer',
 })
@@ -25,10 +23,7 @@ const props = defineProps({
 const slots = useSlots()
 
 const ns = useNamespace('container')
-/*
- * 用于判断是否要内容垂直排列展示即flex-direction: column;
- * 如果没有显式声明排列方式时，会判断插槽中的子组件的组件名称是否有包含ElHeader和ElFooter, 有则返回True
- * */
+
 const isVertical = computed(() => {
   if (props.direction === 'vertical') {
     return true

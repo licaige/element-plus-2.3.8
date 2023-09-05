@@ -26,9 +26,6 @@ export function useButtonCustomStyle(props: ButtonProps) {
         : darken(color, 20)
 
       if (props.plain) {
-        /*
-         *cssVarBlock 函数就用于生成 对应 Scss中写好的变量 进行覆盖
-         * */
         styles = ns.cssVarBlock({
           'bg-color': props.dark
             ? darken(color, 90)

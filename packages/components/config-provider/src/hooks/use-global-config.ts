@@ -70,7 +70,7 @@ export function useGlobalComponentSettings(
     size,
   }
 }
-//provide 和 inject中全局注入
+
 export const provideGlobalConfig = (
   config: MaybeRef<ConfigProviderContext>,
   app?: App,

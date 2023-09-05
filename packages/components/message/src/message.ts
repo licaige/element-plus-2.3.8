@@ -1,6 +1,3 @@
-/*
- * 该文件主要是用到Message组件相关的所有类型声明，以及默认配置等
- * */
 import {
   buildProps,
   definePropType,
