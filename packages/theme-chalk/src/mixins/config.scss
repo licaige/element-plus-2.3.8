@@ -1,5 +1,6 @@
-$namespace: 'el' !default;
-$common-separator: '-' !default;
-$element-separator: '__' !default;
-$modifier-separator: '--' !default;
-$state-prefix: 'is-' !default;
+/* Element CSS 配置文件 */
+$namespace: 'el' !default;//空间名称
+$common-separator: '-' !default;//局部
+$element-separator: '__' !default;//局部
+$modifier-separator: '--' !default;//修饰
+$state-prefix: 'is-' !default; //状态
