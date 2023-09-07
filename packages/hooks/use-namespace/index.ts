@@ -1,3 +1,12 @@
+/*
+ * html 元素通过函数生成字符串的方式 绑定类名
+ *变量的封装：
+通过 连接字符串 拼接变量；
+通过 :root{} 和 当前组件的作用域 实现 全局变量和组件变量；
+使用 map 快速生成 多个变量；
+通过 var + 字符串拼接的方式获取变量值。
+ * */
+
 import { computed, getCurrentInstance, inject, ref, unref } from 'vue'
 
 import type { InjectionKey, Ref } from 'vue'
@@ -52,37 +61,46 @@ export const useNamespace = (
   block: string,
   namespaceOverrides?: Ref<string | undefined>
 ) => {
+  // 命名空间
   const namespace = useGetDerivedNamespace(namespaceOverrides)
   // 创建块 例如：el-form
+  // block 接收一个块的前缀 返回 ${namespace}-${block}-${blockSuffix}
   const b = (blockSuffix = '') =>
     _bem(namespace.value, block, blockSuffix, '', '')
   // 创建元素 例如：el-input__inner
+  // element 接收元素名 返回 ${namespace}-${block}__${element}
   const e = (element?: string) =>
     element ? _bem(namespace.value, block, '', element, '') : ''
   // 创建块修改器 例如：el-form--default
+  // element 接收元素名 返回 ${namespace}-${block}--${modifier}
   const m = (modifier?: string) =>
     modifier ? _bem(namespace.value, block, '', '', modifier) : ''
   // 创建后缀块元素 例如：el-form-item
+  // 返回 ${namespace}-${block}-${blockSuffix}__${element}
   const be = (blockSuffix?: string, element?: string) =>
     blockSuffix && element
       ? _bem(namespace.value, block, blockSuffix, element, '')
       : ''
   // 创建元素修改器 例如：el-scrollbar__wrap--hidden-default
+  // 返回 ${namespace}-${block}__${element}--${modifier}
   const em = (element?: string, modifier?: string) =>
     element && modifier
       ? _bem(namespace.value, block, '', element, modifier)
       : ''
   // 创建块后缀修改器 例如：el-form-item--default
+  // 返回 ${namespace}-${block}-${blockSuffix}--${modifier}
   const bm = (blockSuffix?: string, modifier?: string) =>
     blockSuffix && modifier
       ? _bem(namespace.value, block, blockSuffix, '', modifier)
       : ''
   // 创建块元素修改器 例如：el-form-item__content--xxx
+  // 返回 ${namespace}-${block}-${blockSuffix}__${element}--${modifier}
   const bem = (blockSuffix?: string, element?: string, modifier?: string) =>
     blockSuffix && element && modifier
       ? _bem(namespace.value, block, blockSuffix, element, modifier)
       : ''
   // 创建动作状态 例如：is-success is-required
+  // 如果 name 和 state 存在则返回 is${name} 否则返回 ''
   const is: {
     (name: string, state: boolean | undefined): string
     (name: string): string

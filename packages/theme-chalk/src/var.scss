@@ -21,7 +21,9 @@
   // Typography
   @include set-component-css-var('font-size', $font-size);
   @include set-component-css-var('font-family', $font-family);
-
+  // 将参数变成列表
+  // 使用 var 来获取变量值 （--el-font-weight-primary）
+  // 这个值在全局作用域 定义的
   @include set-css-var-value('font-weight-primary', 500);
   @include set-css-var-value('font-line-height-primary', 24px);
 

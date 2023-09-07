@@ -290,7 +290,7 @@ $checkbox: () !default;
 $checkbox: map.merge(
   (
     'font-size': 14px,
-    'font-weight': getCssVar('font-weight-primary'),
+    'font-weight': getCssVar('font-weight-primary'),// 字体加粗
     'text-color': getCssVar('text-color-regular'),
     'input-height': 14px,
     'input-width': 14px,

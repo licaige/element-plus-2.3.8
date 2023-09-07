@@ -53,6 +53,7 @@
 // join var name
 // joinVarName(('button', 'text-color')) => '--el-button-text-color'
 //这个理解为字符串拼接就行，加了前缀
+// 当列表中的元素不为 '' 的时候将其使用 - 连接
 @function joinVarName($list) {
   $name: '--' + config.$namespace;
   @each $item in $list {
@@ -65,6 +66,7 @@
 }
 // getCssVarName('button', 'text-color') => '--el-button-text-color'
 //形参为数组的形式，同js不一致的，在于...在后面
+// getCssVarName('bg-color', '') => '--el-bg-color'
 @function getCssVarName($args...) {
   @return joinVarName($args);
 }
