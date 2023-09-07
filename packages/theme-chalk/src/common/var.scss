@@ -2,7 +2,7 @@
 /* Element 基类部分，变量配置文件，公共的变量 */
 @use 'sass:math';
 @use 'sass:map';
-
+//引入方法，省去命名空间名字直接使用
 @use '../mixins/function.scss' as *;
 
 // Special comment for theme configurator
@@ -39,18 +39,40 @@ $colors: map.deep-merge(
   ),
   $colors
 );
-
-$color-white: map.get($colors, 'white') !default;
+//定义变量
+$color-white: map.get($colors, 'white') !default;//就是拿到对应的#ffffff
 $color-black: map.get($colors, 'black') !default;
-$color-primary: map.get($colors, 'primary', 'base') !default;
+$color-primary: map.get($colors, 'primary', 'base') !default;//就是拿到对应的#409eff
 $color-success: map.get($colors, 'success', 'base') !default;
 $color-warning: map.get($colors, 'warning', 'base') !default;
 $color-danger: map.get($colors, 'danger', 'base') !default;
 $color-error: map.get($colors, 'error', 'base') !default;
 $color-info: map.get($colors, 'info', 'base') !default;
-
+/*
+值得注意的是 $colors: () !default; 中 () 写法是 SCSS 中变量空数组的表示方式，!default; 表示默认变量，
+将来可以使用 @forward 修改默认变量。那么为什么不直接把相关变量设置写到默认变量中呢？
+因为将来用户在使用 @forward 修改 SCSS 中的默认变量时，有可能只修改其中部分的选项，并不是全部修改，
+如果相关变量写在默认变量中，那么使用 @forward 修改默认变量时，就不能修改部分选项了。
+目前这种通过 map.deep-merge
+合并默认变量的选项的方式则可以达到将来只修改部分选项的目的，变得更加灵活。
+*/
+/*
+// styles/element/index.scss
+/* 只需要重写你需要的即可 */
+/*@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': green,
+    ),
+  ),
+);*/
+// 如果只是按需导入，则可以忽略以下内容。
+// 如果你想导入所有样式:
+// @use "element-plus/theme-chalk/src/index.scss" as *;
+*/
 // https://sass-lang.com/documentation/values/maps#immutability
 // mix colors with white/black to generate light/dark level
+//将颜色与白色/黑色混合以生成亮/暗级别
 @mixin set-color-mix-level(
   $type,
   $number,
@@ -69,7 +91,7 @@ $color-info: map.get($colors, 'info', 'base') !default;
       ),
     ),
     $colors
-  ) !global;
+  ) !global;// 将局部变量转换为全局变量
 }
 
 // $colors.primary.light-i

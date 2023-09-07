@@ -1,6 +1,28 @@
 /* Element CSS 配置文件 */
-$namespace: 'el' !default;//空间名称
-$common-separator: '-' !default;//局部
-$element-separator: '__' !default;//局部
-$modifier-separator: '--' !default;//修饰
-$state-prefix: 'is-' !default; //状态
+$namespace: 'el' !default;//空间名称,所有的组件以el开头，如 el-input
+$common-separator: '-' !default;//空间名与块之间的链接,公共的连接符
+$element-separator: '__' !default;//局部,元素分隔符,元素以__分割，如 el-input__inner
+$modifier-separator: '--' !default;//修饰,修饰器分隔符,修饰符以--分割，如 el-input--mini
+$state-prefix: 'is-' !default; //状态,状态以is-开头，如 is-disabled
+/*
+所有实体的命名均使用小写字母，复合词使用连字符 “-” 连接。
+Block 与 Element 之间使用双下画线 “__” 连接。
+Mofifier 与 Block/Element 使用双连接符 “--” 连接。
+modifier-name 和 modifier_value 之间使用单下画线 “_” 连接。
+使用 __ 两个下划线将块名称和元素名称进行分隔；
+使用 -- 两个破折号将元素名称和修饰符进行分隔；
+block-name__<element-name>--<modifier-name>_<modifier_value>
+
+整一个组件模块就是一个 Block（块），classname 取名为：el-tabs。Block 代表一个逻辑或功能独立的组件，是一系列结构、表现和行为的封装。
+其中每个一个切换的标签就是一个 Element（元素），classname 取名为：el-tabs__item。Element（元素）可以理解为块里的元素。
+Modifier（修改器）用于描述一个 Block 或者 Element 的表现或者行为。
+例如我们需要对两个 Block（块） 或者两个 Element（元素）进行样式微调，那么我们就需要通过 Modifier（修改器），
+Modifier（修改器）只能作用于 Block（块）或者 Element（元素），Modifier（修改器）是不能单独存在的。
+例如按钮组件的 classname 取名为 el-button，但它有不通过状态譬如：primary、success、info，
+那么就通过 Modifier（修改器）进行区分，classname 分别为： el-button--primary、el-button--success、el-button--info。
+从这里也可以看出 BEM 本质上就是 OOCSS，基础样式都封装为 el-button，然后通过继承 el-button 的样式，
+可以拓展不同的类，例如：el-button--primary、el-button--success、el-button--info。
+*/
+/*
+el 通过mixin 实现了 BEM (命名空间+模块 + 元素名 + 修饰器名) namespace-block__element--modifier
+*/

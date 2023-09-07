@@ -72,16 +72,26 @@
 
 // BEM
 @mixin b($block) {
+  // !global 将局部变量转为全局变量
   $B: $namespace + $common-separator + $block !global;//.el-button{}
-
   .#{$B} {
     @content;
   }
 }
+/*
+$B 表示定义一个一个变量，$namespace 是来自 config.scss 文件中定义的变量，
+!global 表示其是一个全局变量，这样就可以在整个文件的任意地方使用。
+#{} 字符串插值，类似模板语法。
+通过 @content 可以将 include{} 中传递过来的内容导入到指定位置。
+*/
 // &__header  => .tp-button__header
+//定义 Element
 @mixin e($element) {
+  /*
+ 首先定义一个全局变量 $E，接着定义父选择器 $selector，再定义当前的选择器 $currentSelector，再通过循环得到当前的选择器。
+ */
   $E: $element !global;
-  $selector: &;
+  $selector: &; // & 表示父类选择器
   $currentSelector: '';
   @each $unit in $element {
     $currentSelector: #{$currentSelector +
@@ -91,8 +101,14 @@
       $unit +
       ','};
   }
-
+/*
+接着通过函数 hitAllSpecialNestRule（hitAllSpecialNestRule 函数在 mixins 目录的 function.scss 文件中）
+ 判断父选择器是否含有 Modifier、表示状态的.is- 和 伪类，如果有则表示需要嵌套。
+  判断是否存在特殊嵌套 包含修饰器，包含状态 包含伪类
+*/
   @if hitAllSpecialNestRule($selector) {
+    // 如果 包含修饰器 状态 或者 伪类 则
+    // 返回 与父类同级
     @at-root {
       #{$selector} {
         #{$currentSelector} {
@@ -101,6 +117,9 @@
       }
     }
   } @else {
+    /*
+     @at-root 的作用就是将处于其内部的代码提升至文档的根部，即不对其内部代码使用嵌套。
+    */
     @at-root {
       #{$currentSelector} {
         @content;
@@ -109,7 +128,14 @@
   }
 }
 // &--primary => .tp-button--primary
+//定义修改器
 @mixin m($modifier) {
+  /*
+  定义了父选择器变量 $selector 和 当前选择器变量 $currentSelector，
+  并且当前选择器变量初始值为空，再通过循环传递进来的参数 $modifier，
+  获得当前选择器变量 $currentSelector 的值，再定义样式内容，
+  而样式内容是通过 @content 将 include{} 中传递过来的内容
+  */
   $selector: &;
   $currentSelector: '';
   @each $unit in $modifier {
@@ -182,8 +208,11 @@
     }
   }
 }
-
+//定义动作状态
 @mixin when($state) {
+  /*
+  选择器就是 config.scss 文件中的变量 $state-prefix 加传进来的状态变量，而样式内容是通过 @content 将 include{} 中传递过来的内容
+  */
   @at-root {
     &.#{$state-prefix + $state} {
       @content;
