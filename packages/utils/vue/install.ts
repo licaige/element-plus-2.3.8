@@ -1,6 +1,7 @@
 import { NOOP } from '@vue/shared'
 
 import type { App, Directive } from 'vue'
+// 通过 Vue 提供的 Plugin 类型和传进来的组件类型 T 的集合进行确定我们的组件类型具有 Plugin 类型方法，如 install 方法
 import type { SFCInstallWithContext, SFCWithInstall } from './typescript'
 
 export const withInstall = <T, E extends Record<string, any>>(
@@ -9,6 +10,7 @@ export const withInstall = <T, E extends Record<string, any>>(
 ) => {
   ;(main as SFCWithInstall<T>).install = (app): void => {
     for (const comp of [main, ...Object.values(extra ?? {})]) {
+      // 设置动态组件名称
       app.component(comp.name, comp)
     }
   }
