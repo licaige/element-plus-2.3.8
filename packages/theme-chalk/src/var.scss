@@ -12,14 +12,21 @@
 :root {
   @include set-css-var-value('color-white', $color-white);
   @include set-css-var-value('color-black', $color-black);
-
+  //为了得到类似这样的基类实例
+  // --el-color-primary: green
   // get rgb
   @each $type in (primary, success, warning, danger, error, info) {
     @include set-css-color-rgb($type);
   }
-
   // Typography
+  //为了得到--el-font-size-extra-large: 20px;
+  //    --el-font-size-large: 18px;
+  //    --el-font-size-medium: 16px;
+  //    --el-font-size-base: 14px;
+  //    --el-font-size-small: 13px;
+  //    --el-font-size-extra-small: 12px;
   @include set-component-css-var('font-size', $font-size);
+  //    --el-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   @include set-component-css-var('font-family', $font-family);
   // 将参数变成列表
   // 使用 var 来获取变量值 （--el-font-weight-primary）
@@ -55,9 +62,15 @@
   // --el-color-#{$type}
   // --el-color-#{$type}-light-{$i}
   @each $type in (primary, success, warning, danger, error, info) {
+    //--el-color-primary: #409eff;
+    //--el-color-primary-light-3: #79bbff;
+    //--el-color-primary-light-5: #a0cfff;
+    //--el-color-primary-light-7: #c6e2ff;
+    //--el-color-primary-light-8: #d9ecff;
+    //--el-color-primary-light-9: #ecf5ff;
+    //--el-color-primary-dark-2: #337ecc;
     @include set-css-color-type($colors, $type);
   }
-
   // color-scheme
   // Background --el-bg-color-#{$type}
   @include set-component-css-var('bg-color', $bg-color);

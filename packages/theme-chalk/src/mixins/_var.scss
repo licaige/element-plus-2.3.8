@@ -8,7 +8,7 @@
 // set css var value, because we need translate value to string
 // for example:
 // @include set-css-var-value(('color', 'primary'), red);
-// --el-color-primary: red;
+//最终为了得到类似--el-color-primary: red;的基类实例
 // border-width
 // return --el-border-width: 1px
 @mixin set-css-var-value($name, $value) {
@@ -20,7 +20,7 @@
 @mixin set-css-var-type($name, $type, $variables) {
   #{getCssVarName($name, $type)}: #{map.get($variables, $type)};
 }
-
+//
 @mixin set-css-color-type($colors, $type) {
   @include set-css-var-value(('color', $type), map.get($colors, $type, 'base'));
 
@@ -42,6 +42,12 @@
 // --el-bg-color: #ffffff
 // --el-bg-color-page: #ffffff
 // --el-bg-color-overlay: #ffffff
+//--el-font-size-extra-large: 20px;
+//--el-font-size-large: 18px;
+//--el-font-size-medium: 16px;
+//--el-font-size-base: 14px;
+//--el-font-size-small: 13px;
+//--el-font-size-extra-small: 12px;
 @mixin set-component-css-var($name, $variables) {
   @each $attribute, $value in $variables {
     @if $attribute == 'default' {

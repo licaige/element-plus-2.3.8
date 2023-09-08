@@ -83,9 +83,15 @@ $color-info: map.get($colors, 'info', 'base') !default;
     (
       $type: (
         '#{$mode}-#{$number}':
+        /*Mix 函数是将两种颜色根据一定的比例混合在一起，生成另一种颜色*/
+        //mix($color-1,$color-2,$weight); $color-1 和 $color-2 指的是你需要合并的颜色，颜色可以是任何表达式，也可以是颜色变量
+        //$weight为合并的比例(选择权重)，默认值为 50%，其取值范围是 0~1 之间。它是每个 RGB 的百分比来衡量，当然透明度也会有一定的权重。
+          // 默认的比例是 50%，这意味着两个颜色各占一半，如果指定的比例是 25%，这意味着第一个颜色所占比例为 25%，第二个颜色所占比例为75%
           mix(
             $mix-color,
             map.get($colors, $type, 'base'),
+              //math.percentage将一个不带单位的数转换成百分比值
+              //与其他数学运算不同，Sass 中的除法是通过 math.div() 函数完成的
             math.percentage(math.div($number, 10))
           ),
       ),
@@ -105,6 +111,33 @@ $color-info: map.get($colors, 'info', 'base') !default;
 // 70% c6e2ff
 // 80% d9ecff
 // 90% ecf5ff
+/*
+$colors:
+  (
+    'primary': (
+      'base': #409eff,
+      'light-1': 通过mix生成的新颜色,
+      'light-2': 通过mix生成的新颜色,
+      'light-3': 通过mix生成的新颜色,
+      // ...
+    ),
+    'success': (
+      'base': #67c23a,
+      'light-1': 通过mix生成的新颜色,
+      'light-2': 通过mix生成的新颜色,
+      'light-3': 通过mix生成的新颜色,
+      // ...
+    ),
+    'warning': (
+      'base': #e6a23c,
+      'light-1': 通过mix生成的新颜色,
+      'light-2': 通过mix生成的新颜色,
+      'light-3': 通过mix生成的新颜色,
+      // ...
+    ),
+    // ...
+  )
+*/
 @each $type in $types {
   @for $i from 1 through 9 {
     @include set-color-mix-level($type, $i, 'light', $color-white);
@@ -112,10 +145,102 @@ $color-info: map.get($colors, 'info', 'base') !default;
 }
 
 // --el-color-primary-dark-2
+/*
+$colors:
+  (
+    'primary': (
+      'base': #409eff,
+      'light-1': 通过mix生成的新颜色,
+      'light-2': 通过mix生成的新颜色,
+      'light-3': 通过mix生成的新颜色,
+      'dark-2': 通过mix生成的新颜色,
+      // ...
+    ),
+    // ...
+  )
+*/
 @each $type in $types {
   @include set-color-mix-level($type, 2, 'dark', $color-black);
 }
-
+//最终得到
+/*
+(
+info: (
+"dark-2": #73767a,
+"light-9": #f4f4f5,
+"light-8": #e9e9eb,
+"light-7": #dedfe0,
+"light-6": #d3d4d6,
+"light-5": #c8c9cc,
+"light-4": #bcbec2,
+"light-3": #b1b3b8,
+"light-2": #a6a9ad,
+"light-1": #9b9ea3,
+"base": #909399),
+error: (
+"dark-2":#c45656,
+"light-9": #fef0f0,
+"light-8": #fde2e2,
+"light-7": #fcd3d3,
+"light-6": #fbc4c4,
+"light-5": #fab6b6,
+"light-4": #f9a7a7,
+"light-3": #f89898,
+"light-2": #f78989,
+"light-1": #f67b7b,
+"base": #f56c6c),
+danger: (
+"dark-2": #c45656,
+"light-9": #fef0f0,
+"light-8": #fde2e2,
+"light-7": #fcd3d3,
+"light-6": #fbc4c4,
+"light-5": #fab6b6,
+"light-4": #f9a7a7,
+"light-3": #f89898,
+"light-2": #f78989,
+"light-1": #f67b7b,
+"base": #f56c6c),
+warning: (
+"dark-2": #b88230,
+"light-9": #fdf6ec,
+"light-8": #faecd8,
+"light-7": #f8e3c5,
+"light-6": #f5dab1,
+"light-5": #f3d19e,
+"light-4": #f0c78a,
+"light-3": #eebe77,
+"light-2": #ebb563,
+"light-1": #e9ab50,
+"base": #e6a23c),
+success: (
+"dark-2": #529b2e,
+"light-9": #f0f9eb,
+"light-8": #e1f3d8,
+"light-7": #d1edc4,
+"light-6": #c2e7b0,
+"light-5": #b3e19d,
+"light-4": #a4da89,
+"light-3": #95d475,
+"light-2": #85ce61,
+"light-1": #76c84e,
+"base": #67c23a),
+primary: (
+"dark-2": #337ecc,
+"light-9": #ecf5ff,
+"light-8": #d9ecff,
+"light-7": #c6e2ff,
+"light-6": #b3d8ff,
+"light-5": #a0cfff,
+"light-4": #8cc5ff,
+"light-3": #79bbff,
+"light-2": #66b1ff,
+"light-1": #53a8ff,
+"base": #409eff),
+"white": #ffffff,
+"black": #000000
+)
+*/
 $text-color: () !default;
 $text-color: map.merge(
   (
