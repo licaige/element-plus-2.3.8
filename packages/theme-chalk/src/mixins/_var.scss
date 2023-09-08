@@ -20,7 +20,20 @@
 @mixin set-css-var-type($name, $type, $variables) {
   #{getCssVarName($name, $type)}: #{map.get($variables, $type)};
 }
-//
+/*
+--el-color-info-light-dark-2: #73767a;
+    --el-color-info-light-light-9: #f4f4f5;
+    --el-color-info-light-light-8: #e9e9eb;
+    --el-color-info-light-light-7: #dedfe0;
+    --el-color-info-light-light-6: #d3d4d6;
+    --el-color-info-light-light-5: #c8c9cc;
+    --el-color-info-light-light-4: #bcbec2;
+    --el-color-info-light-light-3: #b1b3b8;
+    --el-color-info-light-light-2: #a6a9ad;
+    --el-color-info-light-light-1: #9b9ea3;
+    --el-color-info-light-base: #909399;
+*/
+//为了得到类似的数据
 @mixin set-css-color-type($colors, $type) {
   @include set-css-var-value(('color', $type), map.get($colors, $type, 'base'));
 
@@ -36,7 +49,26 @@
     map.get($colors, $type, 'dark-2')
   );
 }
-
+//新增
+@mixin set-css-color-type-all($colors, $type) {
+  //@include set-css-var-value(('color', $type), map.get($colors, $type, 'base'));
+  //@for $i from 1 through 9 {
+  //  @include set-css-var-value(
+  //        ('color', $type, 'light', $i),
+  //      map.get($colors, $type, 'light-#{$i}')
+  //  );
+  //}
+  //
+  //@include set-css-var-value(
+  //      ('color', $type, 'dark-2'),
+  //    map.get($colors, $type, 'dark-2')
+  //);
+  $allColors: map.get($colors, $type);
+  @each $key,$val in $allColors{
+    @include set-css-var-value(
+          ('color', $type, 'light', $key), $val);
+  }
+}
 // set all css var for component by map
 // 接收两个参数，name 和 $variables 列表
 // --el-bg-color: #ffffff
