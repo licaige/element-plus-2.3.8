@@ -18,6 +18,8 @@ $button-icon-span-gap: map.merge(
 );
 
 @include b(button) {
+  //开始初始化对应组件的基本变量，对应值为动态值
+  //比如--el-button-font-weight:var(--el-font-weight-primary)
   @include set-component-css-var('button', $button);
 }
 

@@ -788,8 +788,11 @@ $statistic: map.merge(
 // Button
 // css3 var in packages/theme-chalk/src/button.scss
 $button: () !default;
+//这里我们看到 Button 组件相关 UI 样式的 SCSS 变量的值是 getCssVar 函数获取的全局的 CSS 变量，
+// 这样将来生成新的 CSS 变量的值就是继承于全局的 CSS 变量
 $button: map.merge(
   (
+    //得到对应'font-weight': var(--el-font-weight-primary)，主要为了声明value动态值
     'font-weight': getCssVar('font-weight-primary'),
     'border-color': getCssVar('border-color'),
     'bg-color': getCssVar('fill-color', 'blank'),
@@ -799,6 +802,7 @@ $button: map.merge(
     'disabled-border-color': getCssVar('border-color-light'),
     'divide-border-color': rgba($color-white, 0.5),
     'hover-text-color': getCssVar('color-primary'),
+    //得到对应'hover-bg-color': var(--el-color-primary-light-9)，主要为了声明value动态值
     'hover-bg-color': getCssVar('color-primary', 'light-9'),
     'hover-border-color': getCssVar('color-primary-light-7'),
     'active-text-color': getCssVar('button-hover-text-color'),
