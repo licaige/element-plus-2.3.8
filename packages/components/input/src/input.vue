@@ -1,3 +1,4 @@
+<!--组件模板内容-->
 <template>
   <div
     v-show="type !== 'hidden'"

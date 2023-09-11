@@ -1,3 +1,4 @@
+// 组件属性与 TS 类型
 import { isString } from '@vue/shared'
 import {
   buildProps,
@@ -11,7 +12,7 @@ import type Input from './input.vue'
 import type { ExtractPropTypes, StyleValue } from 'vue'
 
 export type InputAutoSize = { minRows?: number; maxRows?: number } | boolean
-
+// 定义 props
 export const inputProps = buildProps({
   /**
    * @description native input id
@@ -187,4 +188,5 @@ export const inputEmits = {
 }
 export type InputEmits = typeof inputEmits
 
+// @ts-ignore
 export type InputInstance = InstanceType<typeof Input>

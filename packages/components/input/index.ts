@@ -1,3 +1,4 @@
+// 组件入口文件
 import { withInstall } from '@element-plus/utils'
 
 import Input from './src/input.vue'
