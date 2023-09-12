@@ -78,10 +78,10 @@
     @content;
   }
 }
+//#{} 字符串插值，类似模板语法。
 /*
 $B 表示定义一个一个变量，$namespace 是来自 config.scss 文件中定义的变量，
 !global 表示其是一个全局变量，这样就可以在整个文件的任意地方使用。
-#{} 字符串插值，类似模板语法。
 通过 @content 可以将 include{} 中传递过来的内容导入到指定位置。
 */
 // &__header  => .tp-button__header
