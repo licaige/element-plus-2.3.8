@@ -1,8 +1,8 @@
 /* Element CSS 配置文件 */
 $namespace: 'el' !default;//空间名称,所有的组件以el开头，如 el-input
-$common-separator: '-' !default;//空间名与块之间的链接,公共的连接符
+$common-separator: '-' !default;//空间名与块之间的链接,公共的连接符,命名连接符用,仅作为连接字符使用，表示某个块或者子元素的多个单词之间的链接符号。
 $element-separator: '__' !default;//局部,元素分隔符,元素以__分割，如 el-input__inner
-$modifier-separator: '--' !default;//修饰,修饰器分隔符,修饰符以--分割，如 el-input--mini
+$modifier-separator: '--' !default;//修饰,修饰器分隔符,元素的标记类，用来设置特殊样式或者效果,修饰符以--分割，如 el-input--mini
 $state-prefix: 'is-' !default; //状态,状态以is-开头，如 is-disabled
 /*
 所有实体的命名均使用小写字母，复合词使用连字符 “-” 连接。
