@@ -27,6 +27,7 @@
         ref="inputRef"
         container-role="combobox"
         :model-value="(displayValue as string)"
+        title="李琦"
         :name="name"
         :size="pickerSize"
         :disabled="pickerDisabled"

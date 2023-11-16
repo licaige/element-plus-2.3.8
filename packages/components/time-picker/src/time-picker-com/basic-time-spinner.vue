@@ -182,7 +182,6 @@ const emitSelectRange = (type: TimeUnit) => {
       break
   }
   const [left, right] = range
-
   emit('select-range', left, right)
   currentScrollbar.value = type
 }
@@ -335,6 +334,7 @@ onMounted(() => {
 })
 
 const setRef = (scrollbar: ScrollbarInstance, type: TimeUnit) => {
+  console.log('scrollbar', scrollbar)
   listRefsMap[type].value = scrollbar
 }
 

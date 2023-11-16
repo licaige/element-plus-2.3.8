@@ -1,6 +1,8 @@
 <template>
+  <!--常规情况-->
   <transition :name="transitionName">
     <div v-if="actualVisible || visible" :class="ns.b('panel')">
+      <!--panel部分-->
       <div :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }]">
         <time-spinner
           ref="spinner"
@@ -17,6 +19,7 @@
           @select-range="setSelectionRange"
         />
       </div>
+      <!--footer部分-->
       <div :class="ns.be('panel', 'footer')">
         <button
           type="button"
