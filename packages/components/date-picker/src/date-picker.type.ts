@@ -1,5 +1,5 @@
 import type { Dayjs } from 'dayjs'
-
+// 数据接口参数
 export declare type IDatePickerType =
   | 'year'
   | 'month'

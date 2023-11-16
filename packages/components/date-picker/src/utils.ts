@@ -1,17 +1,22 @@
 import dayjs from 'dayjs'
+// 判断方法
 import { isArray } from '@element-plus/utils'
-
+// 对应时间插件
 import type { Dayjs } from 'dayjs'
+// 接口数据类型
 import type { DateCell } from './date-picker.type'
-
+// 区间数据
 type DayRange = [Dayjs | undefined, Dayjs | undefined]
-
+// 是否是有效的区间
 export const isValidRange = (range: DayRange): boolean => {
-  if (!isArray(range)) return false
-
+  // 区间模式，需要两个数据才行
+  if (!isArray(range)) {
+    return false
+  }
+  // 取值操作
   const [left, right] = range
-
   return (
+    // 对应左右时间的判断
     dayjs.isDayjs(left) && dayjs.isDayjs(right) && left.isSameOrBefore(right)
   )
 }
@@ -29,7 +34,6 @@ export const getDefaultValue = (
   { lang, unit, unlinkPanels }: GetDefaultValueParams
 ) => {
   let start: Dayjs
-
   if (isArray(defaultValue)) {
     let [left, right] = defaultValue.map((d) => dayjs(d).locale(lang))
     if (!unlinkPanels) {
